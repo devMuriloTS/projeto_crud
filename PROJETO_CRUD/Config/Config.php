@@ -1,5 +1,5 @@
 <?php
-include_once '../Classes/Database.php';
+include_once(__DIR__ . '/../Classes/Database.php');
 
 $database = new Database();
 $db = $database->getConnection();

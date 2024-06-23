@@ -12,7 +12,7 @@
             $senha = $_POST['senha'];
             if($dados_usuario = $usuario->login($email, $senha)){
                 $_SESSION['usuario_id'] = $dados_usuario['id'];
-                header('Location: portal.php');
+                header('location:portal.php');
                 exit();
             }else{
                 $mensagem_erro = "Credenciais inválidas!";
@@ -27,6 +27,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styleCRUD.css" />
     <title>Autenticação</title>
 </head>
 <body>
@@ -42,6 +43,7 @@
             <input type="submit" value="Login" name="login">
             <br>
             <a href="./registrar.php"><p>Registrar-se</p></a>
+            <a href="./repass.php"><p>Recuperar senha</p></a>
         </form>
 
         <div class="mensagem">
