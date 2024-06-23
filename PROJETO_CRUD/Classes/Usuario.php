@@ -4,7 +4,7 @@ class Usuario
 {
     private $conn;
 
-    private $table_name = "usuarios"; //nome da tabela
+    private $table_name = "tbusuarios"; //nome da tabela
 
     public function __construct($db){
         $this->conn = $db;
@@ -59,5 +59,13 @@ class Usuario
         $stmt = $this->conn->prepare($query);
         $stmt->execute([$id]);
         return $stmt -> fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function buscarPorEmail($email) {
+        $sql = "SELECT * FROM " . $this->table_name . " WHERE email = :email";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
