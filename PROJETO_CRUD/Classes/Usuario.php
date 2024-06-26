@@ -4,22 +4,50 @@ class Usuario
 {
     private $conn;
 
-    private $table_name = "tbusuarios"; //nome da tabela
+    private $table_name = "usuarios"; //nome da tabela
 
     public function __construct($db){
         $this->conn = $db;
     }
 
+    // coisa da apostila
+    public function lerPesquisar ($search = '', $order_by = '') {
+        $query = "SELECT * FROM usuarios";
+        $conditions = [];
+        $params = [];
+
+        if($search) {
+            $conditions[] = "(nome LIKE :search OR email LIKE :search)";
+            $params[':search'] = '%' . $search . '%';
+        }
+
+        if($order_by === 'nome') {
+            $query .= " ORDER BY nome";
+        } elseif ($order_by === 'sexo') {
+            $query .= " ORDER BY sexo";
+        }
+
+        if (count($conditions) > 0) {
+            $query .= " WHERE " . implode(' AND ', $conditions);
+        }
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute($params);
+        return $stmt;
+    }
+
+    // termino coisa da apostila
+
     public function registrar($nome, $sexo, $fone, $email, $senha){
-        $query = " INSERT INTO " . $this->table_name . " (nome, sexo, fone, email, senha) VALUES (?,?,?,?,?)";
+        $query = "INSERT INTO " . $this->table_name . " (nome, sexo, fone, email, senha) VALUES (?,?,?,?,?)";
         $stmt = $this->conn->prepare($query);
         $hashed_password = password_hash($senha, PASSWORD_BCRYPT);
-        $stmt->execute ([$nome, $sexo, $fone, $email, $hashed_password]);
+        $stmt->execute([$nome, $sexo, $fone, $email, $hashed_password]);
         return $stmt; 
-    }
+    } 
     
     public function login($email, $senha){
-        $query = "SELECT * FROM  " . $this->table_name .  " WHERE email = ?";
+        $query = "SELECT * FROM " . $this->table_name . " WHERE email = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->execute([$email]);
         $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -27,24 +55,10 @@ class Usuario
             return $usuario;
         }
         return false;
-    }
+    } // certo
 
     public function criar($nome, $sexo, $fone, $email, $senha){
         return $this ->registrar($nome, $sexo, $fone, $email, $senha);
-    }
-
-    public function atualizar($id, $nome, $sexo, $email, $fone){
-        $query = "UPDATE " . $this->table_name . " SET nome = ?, sexo = ?, fone = ?, email = ? WHERE id = ?";
-        $stmt = $this->conn->prepare($query);
-        $stmt->execute ([$nome, $sexo, $fone, $email, $id]);
-        return $stmt;
-    }
-
-    public function deletar($id){
-        $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
-        $stmt = $this->conn->prepare($query);
-        $stmt->execute([$id]);
-        return $stmt;
     }
 
     public function ler(){
@@ -52,7 +66,7 @@ class Usuario
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt;
-    }
+    } // certo
 
     public function lerPorId($id){
         $query = "SELECT * FROM " . $this->table_name . " WHERE id = ?";
@@ -60,6 +74,21 @@ class Usuario
         $stmt->execute([$id]);
         return $stmt -> fetch(PDO::FETCH_ASSOC);
     }
+
+    public function atualizar($id, $nome, $sexo, $email, $fone){
+        $query = "UPDATE " . $this->table_name . " SET nome = ?, sexo = ?, fone = ?, email = ? WHERE id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute ([$nome, $sexo, $fone, $email, $id]);
+        return $stmt;
+    } // certo
+
+    public function deletar($id){
+        $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([$id]);
+        return $stmt;
+    } // certo
+
 
     public function buscarPorEmail($email) {
         $sql = "SELECT * FROM " . $this->table_name . " WHERE email = :email";
@@ -69,3 +98,5 @@ class Usuario
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
+
+// tudo certo nesse aqui

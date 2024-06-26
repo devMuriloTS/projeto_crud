@@ -11,14 +11,6 @@ if(!isset($_SESSION['usuario_id'])) {
 
 $usuario = new Usuario($db);
 
-// processar exclusao de usuário
-if (isset($_GET['deletar'])){
-    $id = $_GET['deletar'];
-    $usuario->deletar($id);
-    header('Location: portal.php');
-    exit();
-}
-
 //obter dados do usuario logado
 $dados_usuario = $usuario->lerPorId($_SESSION['usuario_id']);
 $nome_usuario = $dados_usuario['nome'];
@@ -35,6 +27,12 @@ function saudacao(){
         return "Boa noite!";
     }
 }
+
+// Obter parâmetros de pesquisa e filtros
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+$order_by = isset($_GET['order_by']) ? $_GET['order_by'] : '';
+// Obter dados dos usuários com filtros
+$dados = $usuario->ler($search, $order_by);
 ?>
 
 
@@ -46,33 +44,32 @@ function saudacao(){
     <title>Portal</title>
 </head>
 <body>
-    <h1> <?php echo saudacao() . ", " . $nome_usuario; ?>!</h1>
-    <a href="registrar.php">Adicionar usuário</a>
-    <a href="logout.php">Logout</a>
+    <h1> <?php echo saudacao() . ", " . $nome_usuario ?>!</h1>
+    <a href="logout.php"><button>Logout</button></a>
     <br>
 
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Sexo</th>
-            <th>Fone</th>
-            <th>Email</th>
-            <th>Ações</th>
-        </tr>
-        <?php while ($row = $dados->fetch(PDO::FETCH_ASSOC)) : ?>
-            <tr>
-                <td><?php echo $row['id']; ?></td>
-                <td><?php echo $row['nome']; ?></td>
-                <td><?php echo ($row['sexo'] === 'M') ? 'Mascculino' : 'Feminino'; ?></td>
-                <td><?php echo $row['fone']; ?></td>
-                <td><?php echo $row['email']; ?></td>
-                <td>
-                    <a href="editar.php?id=<?php echo $row['id'];?>">Editar</a>
-                    <a href="deletar.php?id=<?php echo $row['id'];?>">Deletar</a>
-                </td>
-            </tr>
-        <?php  endwhile; ?>
-    </table>
+    <form method="GET">
+        <input type="text" name="search" placeholder="Pesquisar por nome ou email" value="<?php echo htmlspecialchars($search); ?>">
+        <label>
+            <input type="radio" name="order_by" value="" <?php if($order_by == '') echo 'checked'; ?>> Normal
+        </label>
+        <label>
+            <input type="radio" name="order_bu" value="nome" <?php if($order_by == 'nome') echo 'checked'; ?>> Ordem Alfabetica
+        </label>
+        <label>
+            <input type="radio" name="order_by" value="sexo" <?php if($order_by == 'sexo') echo 'checked'; ?>> Sexo
+        </label>
+        <button type="submit">Pesquisar</button>
+        </form>
+        
+
+    </form>
+
+    <br>
+
+    <a href="crudusuario.php"><button>Usuários</button></a>
+    <a href="crudnoticias.php"><button>Noticias</button></a>
+
+    
 </body>
 </html>

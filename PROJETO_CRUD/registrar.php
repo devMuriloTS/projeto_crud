@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <br> <br>
 
         <label for="fone">Fone:</label>
-        <input type="text" name="fone" placeholder="Fone" required> 
+        <input type="text" name="fone" placeholder="Fone" required maxlength="15"> 
         <br> <br>
 
         <label for="email">Email:</label>

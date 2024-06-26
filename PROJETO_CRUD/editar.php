@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['usuarios_id'])) {
+if (!isset($_SESSION['usuario_id'])) {
     header('Location: index.php');
     exit();
 }
@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fone = $_POST['fone'];
     $email = $_POST['email'];
     $usuario->atualizar($id, $nome, $sexo, $fone, $email);
-    header('Location: portal.php');
+    header('Location: crudusuario.php');
     exit();
 }
 if(isset($_GET['id'])) {
