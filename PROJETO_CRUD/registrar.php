@@ -20,37 +20,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="loginstyle.css" />
     <title>Adicionar Usuário</title>
 </head>
 
 <body>
-    <h1> Adicionar Usuário</h1>
-    <form method="POST">
-        <label for="nome">Nome:</label>
-        <input type="text" name="nome" placeholder="Nome" required>
-        <br><br> <label>Sexo: </label>
-        <label for="masculino">
-            <input type="radio" id="masculino" name="sexo" value="M" required> Masculino
-        </label>
-        <label for="feminino">
-            <input type="radio" id="feminino" name="sexo" value="F" required> Feminino
-        </label>
+    <div class="container">
+    <form method="POST" class="registro">
+        <p> Registro </p>
+        <div class="input-container">
+        <input type="text" name="nome" required>
+        <label for="nome">Nome</label>
+        </div>
+        <div class="sexo">
+        <div class="input-container">  
+        <input type="radio" id="masculino" name="sexo" value="M" required> 
+        <p for="masculino">
+            Masculino
+        </p>
+        </div>
+        <div class="input-container">
+            <input type="radio" id="feminino" name="sexo" value="F" required> 
+        <p for="feminino">
+            Feminino
+        </p>
+        </div>
+        </div>
+
+        <div class="input-container">
+        <input type="text" name="fone" required maxlength="15"> 
+        <label for="fone">Fone</label>
+        </div>
         <br> <br>
 
-        <label for="fone">Fone:</label>
-        <input type="text" name="fone" placeholder="Fone" required maxlength="15"> 
+        <div class="input-container">
+        <input type="email" name="email" required> 
+        <label for="email">Email</label>
+        </div>
         <br> <br>
 
-        <label for="email">Email:</label>
-        <input type="email" name="email" placeholder="Email" required> 
+        <div class="input-container">
+        <input type="password" name="senha" required>
+        <label for="senha">Senha</label>
+        </div>
         <br> <br>
 
-        <label for="senha">Senha:</label>
-        <input type="password" name="senha" placeholder="Senha" required>
-        <br> <br>
-
-        <input type="submit" value="Adicionar">
+        <button type="submit">Registrar</button>
     </form>
+    <a class="voltar" href="./login.php"><button class="voltarbt">Voltar</button></a>
+    </div>
 </body>
 
 </html>

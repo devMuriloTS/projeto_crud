@@ -27,25 +27,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styleCRUD.css" />
+    <link rel="stylesheet" type="text/css" href="loginstyle.css" />
     <title>Autenticação</title>
 </head>
 <body>
     <div class="container">
         <form method="POST">
-            <h1> Autenticação </h1>
-            <label for="email">Email:</label>
-            <input type="email" placeholder="Email" name="email" required>
-            <br> <br>
-            <label for="senha">Senha:</label>
-            <input type="password" placeholder="Senha" name="senha" required>
-            <br> <br><br>
+        <p> Autenticação </p>
+            <div class="form">
+	            <div class="input-container">
+		        <input type="email" name="email" required/>
+		        <label>Email</label>		
+	            </div>
+	            <div class="input-container">		
+		        <input type="password" name="senha" class="password-input" required/>
+		        <label>Senha</label>
+	        </div>
 
-            <input type="submit" value="Login" name="login">
-            <br>
-            <a href="./registrar.php"><p>Registrar-se</p></a>
-            <a href="./repass.php"><p>Recuperar senha</p></a>
+            <button type="submit" name="login" id="logar">Login</button>
+            </div>
+
         </form>
+        <a href="./registrar.php"><button>Registrar-se</button></a>
+        <a href="./repass.php"><button>Recuperar senha</button></a>
 
         <div class="mensagem">
             <?php
