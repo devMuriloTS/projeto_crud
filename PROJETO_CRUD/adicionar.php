@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
     $usuario->criar($nome, $sexo, $fone, $email, $senha);
-    header('Location: login.php');
+    header('Location: crudusuario.php');
     exit();
 }
 ?>
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="container">
     <form method="POST" class="registro">
-        <p> Registro </p>
+        <p> Adicionar </p>
         <div class="input-container">
         <input type="text" name="nome" required>
         <label for="nome">Nome</label>
@@ -65,9 +65,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <br> <br>
 
-        <button type="submit">Registrar</button>
+        <button type="submit">Adicionar</button>
     </form>
-    <a class="voltar" href="./login.php"><button class="voltarbt">Voltar</button></a>
+    <a class="voltar" href="./crudusuario.php"><button class="voltarbt">Voltar</button></a>
     </div>
 </body>
 

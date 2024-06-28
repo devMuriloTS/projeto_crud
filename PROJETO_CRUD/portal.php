@@ -20,11 +20,11 @@ $dados = $usuario->ler();
 function saudacao(){
     $hora = date('H');
     if ($hora >= 6 && $hora < 12) {
-        return "Bom dia!";
+        return "Bom dia";
     }else if($hora >= 12 && $hora < 18) {
-        return "Boa tarde!";
+        return "Boa tarde";
     }else{
-        return "Boa noite!";
+        return "Boa noite";
     }
 }
 
@@ -32,43 +32,27 @@ function saudacao(){
 $search = isset($_GET['search']) ? $_GET['search'] : '';
 $order_by = isset($_GET['order_by']) ? $_GET['order_by'] : '';
 // Obter dados dos usuários com filtros
-$dados = $usuario->ler($search, $order_by);
+$dados = $usuario->lerPesquisar($search, $order_by);
 ?>
 
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" type="text/css" href="portalstyle.css" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal</title>
 </head>
 <body>
-    <h1> <?php echo saudacao() . ", " . $nome_usuario ?>!</h1>
-    <a href="logout.php"><button>Logout</button></a>
-    <br>
-
-    <form method="GET">
-        <input type="text" name="search" placeholder="Pesquisar por nome ou email" value="<?php echo htmlspecialchars($search); ?>">
-        <label>
-            <input type="radio" name="order_by" value="" <?php if($order_by == '') echo 'checked'; ?>> Normal
-        </label>
-        <label>
-            <input type="radio" name="order_bu" value="nome" <?php if($order_by == 'nome') echo 'checked'; ?>> Ordem Alfabetica
-        </label>
-        <label>
-            <input type="radio" name="order_by" value="sexo" <?php if($order_by == 'sexo') echo 'checked'; ?>> Sexo
-        </label>
-        <button type="submit">Pesquisar</button>
-        </form>
-        
-
-    </form>
-
-    <br>
-
-    <a href="crudusuario.php"><button>Usuários</button></a>
-    <a href="crudnoticias.php"><button>Noticias</button></a>
+    <div class="container">
+        <h1> <?php echo saudacao() . ", " . $nome_usuario ?>!</h1>
+        <div class="botoes">
+        <a href="crudusuario.php"><button class="usuarios">Usuários</button></a>
+        <a href="crudnoticias.php"><button class="noticias">Noticias</button></a>
+        <a href="logout.php"><button class="logout">Logout</button></a>
+        </div>
+    </div>
 
     
 </body>

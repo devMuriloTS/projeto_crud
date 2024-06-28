@@ -12,7 +12,7 @@ class Usuario
 
     // coisa da apostila
     public function lerPesquisar ($search = '', $order_by = '') {
-        $query = "SELECT * FROM usuarios";
+        $query = " SELECT * FROM usuarios ";
         $conditions = [];
         $params = [];
 
@@ -21,19 +21,19 @@ class Usuario
             $params[':search'] = '%' . $search . '%';
         }
 
+        if (count($conditions) > 0) {
+            $query .= " WHERE " . implode(' AND ', $conditions);
+        }
+
         if($order_by === 'nome') {
             $query .= " ORDER BY nome";
         } elseif ($order_by === 'sexo') {
             $query .= " ORDER BY sexo";
         }
 
-        if (count($conditions) > 0) {
-            $query .= " WHERE " . implode(' AND ', $conditions);
-        }
-
         $stmt = $this->conn->prepare($query);
         $stmt->execute($params);
-        return $stmt;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     // termino coisa da apostila
