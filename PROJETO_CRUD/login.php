@@ -49,7 +49,7 @@
 
         </form>
         <a href="./registrar.php"><button>Registrar-se</button></a>
-        <a href="./repass.php"><button>Recuperar senha</button></a>
+        <a href="./solicitar_recuperacao.php"><button>Recuperar senha</button></a>
 
         <div class="mensagem">
             <?php

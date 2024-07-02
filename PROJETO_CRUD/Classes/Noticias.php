@@ -17,19 +17,21 @@ class Noticias {
     }
 
     public function ler($search = '', $order_by = '') {
-        $query = "SELECT n.idnot, u.nome as usuario, n.titulo, n.noticia, n.data FROM usuarios AS u INNER JOIN noticias AS n ON u.id = n.idusu ";   //"SELECT * FROM noticias";
+        $query = "SELECT n.idnot, u.nome as usuario, n.titulo, n.noticia, n.data 
+                  FROM usuarios AS u 
+                  INNER JOIN noticias AS n ON u.id = n.idusu";
         $conditions = [];
         $params = [];
 
         if ($search) {
-           $conditions[] = "(titulo LIKE : search OR noticia LIKE : search)";
+            $conditions[] = "(n.titulo LIKE :search OR n.noticia LIKE :search)";
             $params[':search'] = '%' . $search . '%';
         }
 
         if ($order_by === 'titulo') {
-            $query .= " ORDER BY titulo";
+            $query .= " ORDER BY n.titulo";
         } elseif ($order_by === 'data') {
-            $query .= " ORDER BY data";
+            $query .= " ORDER BY n.data";
         }
 
         if (count($conditions) > 0) {
@@ -40,7 +42,6 @@ class Noticias {
         $stmt->execute($params);
         return $stmt;
     }
-
     public function lerPorId($idnot)
     {
         $query = "SELECT * FROM " . $this->table_name . " WHERE idnot = ?";

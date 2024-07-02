@@ -3,19 +3,6 @@
 
 
 .container{
-    /* deixando centralizado os itens */
-    justify-content: center;
-    text-align: center;
-}
-
-p{
-    justify-content: start;
-    margin-top: -40px;
-    margin-bottom: 4.5em;
-    font-size:larger;
-}
-
-form {
     color: #3f3b3b;
     /* sombreamento */
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
@@ -26,8 +13,13 @@ form {
     margin-bottom: 1em;
     padding: 6em;
     width: 16em;
-    height: 13em;
+    height: auto;
     justify-content: space-around;
+
+    /* deixando centralizado os itens */
+    justify-content: center;
+    text-align: center;
+
     /* colorir */
     background-color: rgb(255, 255, 255);
     border: 2px solid red; 
@@ -44,9 +36,52 @@ button {
     font-family: "Roboto", sans-serif;
     font-weight: 300;
     font-style: normal;
+    margin-bottom: 1em;
+}
+
+th{
+  width: 90%;
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  border: 2px solid red;
+  border-radius: 3px;
+  padding: 01px;
+
+}
+.acao{
+  margin: 1em;
+  margin-top: 1rem;
+  margin-bottom: 1em;
+  border: 1px blue solid;
+  border-radius: 4px;
+  padding: 0.5px;
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
+
+tr{
+  width: 10em;
+  color: black;
+  border: 2px solid red;
+  border-radius: 3px;
+  padding: 2px;
+}
+
+table{
+  width: 120%;
+  padding: 10px;
+  border: 3px solid red;
+  border-radius: 15px;   
+  margin-left: -20px;
+}
+
+td{
+  padding: 5px;
 }
 
 button {
+    vertical-align: sub;
     cursor: pointer;
     align-items: center;
     appearance: none;
@@ -115,8 +150,6 @@ button:disabled {
   box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
 }
 
-
-
 body{
 	background-image: url("https://images.pexels.com/photos/891252/pexels-photo-891252.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
 	background-position: center;
@@ -126,126 +159,46 @@ body{
 	min-height:100vh;
 	font-family: 'Noto Sans', sans-serif;
 }
-.text-center{
-	color:#000000;	
-	text-transform:uppercase;
-    font-size: 23px;
-    margin: -50px 0 80px 0;
-    display: block;
-    text-align: center;
-}
-.box{
-	position:absolute;
-	left:50%;
-	top:50%;
-	transform: translate(-50%,-50%);
-    background-color: rgba(0, 0, 0, 0.89);
-	border-radius:3px;
-	padding:70px 100px;
-}
-.input-container{
-	position:relative;
-	margin-bottom:25px;
-}
-.input-container label{
-	position:absolute;
-	top:0px;
-	left:0px;
-	font-size:16px;
-	color:#000000;	
-	transition: all 0.5s ease-in-out;
-}
-.input-container input{ 
-  border:0;
-  border-bottom:1px solid #555;  
-  background:transparent;
-  width:100%;
-  padding:8px 0 5px 0;
-  font-size:16px;
-  color:#000000;
-}
-.input-container input:focus{ 
-    outline: none;
- border:none;	
- border-bottom:1px solid #000000;	
-}
-
-.input-container input:focus ~ label,
-.input-container input:valid ~ label{
-	top:-12px;
-	font-size:12px;
-	
-}
-
-.registro{
-    height: 560px;
-    width: 500px;
-    border-radius: 35px;
-    margin-left: 18.3em;
-}
-
-.voltar{
-    margin-top: -95px;
-    margin-left: -300px;
+h1{
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
     position: absolute;
+    margin-top: -70px;
+    margin-left: 25px;
 }
 
-.voltarbt{
+.logout{
     background-color: rgb(255, 177, 177);
     transition: 0.3s;
 }
 
-.voltarbt:hover{
+.logout:hover{
     background-color: red;
     color: white;
 }
 
-.sexo{
-    margin-top: 3rem;
-    display: flex;
-    justify-content: space-around;
+.usuarios{
+    background-color: rgb(127, 197, 255);
+    transition: 0.3s;
 }
 
-input[type="radio"] {
-    outline: none;
-	appearance: none;
-	-webkit-appearance: none;
-	width: 20px;
-	height: 20px;
-	border: 1px solid #000000;
-	border-radius: 50%;
-	margin-right: 10px;
-	position: relative;
-	top: 6px;
+.usuarios:hover{
+    background-color: blue;
+    color: white;
 }
 
-input[type="radio"]:checked::before {
-	content: "";
-	display: block;
-	width: 12px;
-	height: 12px;
-    background-color: rgb(167, 167, 167);
-	border-radius: 50%;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	animation: appear 1s;
+.noticias{
+    background-color: rgb(212, 255, 163);
+    transition: 0.3s;
 }
 
-#logar{
-  margin-top: 3em;
-  background-color: rgb(146, 255, 164);
+.noticias:hover{
+    background-color: rgb(40, 170, 0);
+    color: rgb(255, 255, 255);
 }
 
-#logar:hover{
-  background-color: rgb(0, 255, 42);
-  color: white;
-}
-
-h2{
-
-  background-color: white;
-  border: 2px red solid;
-  margin-top: 60%;
+.botoes{
+    margin-bottom: -200px;
+    display:grid;
 }

@@ -97,6 +97,35 @@ class Usuario
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function gerarCodigoVerificacao($email) {
+        $codigo = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, 10);
+
+        $query = "UPDATE " . $this->table_name . " SET codigo_verificacao = ? WHERE email = ?";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([$codigo, $email]);
+
+        return ($stmt->rowCount() > 0) ? $codigo : false;
+    }
+
+    public function verificarCodigo($codigo) {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE codigo_verificacao = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([$codigo]);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function redefinirSenha($codigo, $senha) {
+        $query = "UPDATE " . $this->table_name . " SET senha = ?, codigo_verificacao = NULL WHERE codigo_verificacao = ?";
+
+        $stmt = $this->conn->prepare($query);
+        $hashed_password = password_hash($senha, PASSWORD_BCRYPT);
+        $stmt->execute([$hashed_password, $codigo]);
+        return $stmt->rowCount() > 0;
+    }
+    
 }
 
 // tudo certo nesse aqui

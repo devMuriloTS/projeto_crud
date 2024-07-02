@@ -39,8 +39,8 @@ $dados = $n->ler($search, $order_by);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="crudNoticias.css">
-    <title>crudNotícias</title>
+    <link rel="stylesheet" href="noticiastyle.css">
+    <title>Crud Noticias</title>
 </head>
 
 <body>
@@ -48,7 +48,7 @@ $dados = $n->ler($search, $order_by);
     <a href="login.php"><button class="botao">Logout</button></a>
     <a href="portal.php"><button class="botao">Voltar ao Portal</button></a>
 
-    <div class="box">
+    <div class="container">
         <div class="titulo">
             <h1>Portal de Notícias.</h1>
         </div>
@@ -61,16 +61,16 @@ $dados = $n->ler($search, $order_by);
                     echo 'checked'; ?>> Normal
             </label>
             <label>
-                <input type="radio" name="order_by" value="nome" <?php if ($order_by == 'titulo')
+                <input type="radio" name="order_by" value="titulo" <?php if ($order_by == 'titulo')
                     echo 'checked'; ?>>
                 Ordem Alfabética
             </label>
             <label>
-                <input type="radio" name="order_by" value="sexo" <?php if ($order_by == 'data')
+                <input type="radio" name="order_by" value="data" <?php if ($order_by == 'data')
                     echo 'checked'; ?>>
                 Por data
             </label>
-            <button type="submit" class="botaoPesq">Pesquisar</button>
+            <button type="submit">Pesquisar</button>
         </form>
 
         <table border="1">

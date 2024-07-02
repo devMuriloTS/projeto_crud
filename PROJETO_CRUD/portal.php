@@ -48,9 +48,11 @@ $dados = $usuario->lerPesquisar($search, $order_by);
     <div class="container">
         <h1> <?php echo saudacao() . ", " . $nome_usuario ?>!</h1>
         <div class="botoes">
-        <a href="crudusuario.php"><button class="usuarios">Usuários</button></a>
+        <a href="crudusuario.php"><button class="usuarios">CRUD Usuários</button></a>
+        <a href="consusuario.php"><button class="usuarios">Editar Perfil</button></a>
         <a href="crudnoticias.php"><button class="noticias">Noticias</button></a>
         <a href="logout.php"><button class="logout">Logout</button></a>
+
         </div>
     </div>
 

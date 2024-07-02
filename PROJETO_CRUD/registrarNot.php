@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" type="text/css" href="loginstyle.css" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar Notícia</title>
@@ -28,13 +29,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <a href="crudnoticias.php"><button class="voltar">Voltar</button></a>
 
-    <div class="box">
-        <div class="titulo">
-            <h1>Registre sua Notícia</h1>
-        </div>
 
-        <div class="cadastro">
+
+        <div class="container">
+        <div>
             <form method="POST">
+            <div>
+                <h1>Registre sua Notícia</h1>
                 <label for="titulo">Título: </label>
                 <input type="text" class="campText" name="titulo" required><br><br>
                 <label for="noticia">Notícia: </label>
